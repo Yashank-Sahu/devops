@@ -1,2 +1,2 @@
 FROM ubuntu/apache2
-copy . /var/www/html/
+COPY . /var/www/html/
