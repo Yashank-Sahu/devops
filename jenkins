@@ -1,0 +1,67 @@
+#!/bin/bash 
+
+ 
+
+echo "Updating the base machine" 
+
+sleep 5 
+
+sudo apt-get update -y > /dev/null 
+
+ 
+
+echo "Upgrading the base machine" 
+
+sleep 5 
+
+sudo apt-get upgrade -y > /dev/null 
+
+ 
+
+echo "Checking and installing wget" 
+
+sleep 5 
+
+sudo apt-get install wget -y > /dev/null 
+
+ 
+
+echo "Installing Java JDK and JRE" 
+
+sleep 5 
+
+sudo apt-get install fontconfig openjdk-17-jre -y > /dev/null 
+
+sleep 5 
+
+java -version 
+
+ 
+
+echo "All prerequisites met, now installing Jenkins" 
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key 
+
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null 
+
+sudo apt-get update -y > /dev/null 
+
+sleep 5 
+
+sudo apt-get install jenkins -y > /dev/null 
+
+sleep 5 
+
+sudo systemctl enable jenkins > /dev/null 
+
+sudo systemctl start jenkins > /dev/null 
+
+sudo systemctl restart jenkins > /dev/null 
+
+sleep 5 
+
+echo "Installation complete. Displaying the status:" 
+
+systemctl status jenkins 
+
+clear 
